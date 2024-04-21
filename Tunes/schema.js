@@ -5,8 +5,14 @@ const tuneSchema = new mongoose.Schema({
     type: String,
     email: String,
     aliases: [String],
-    comments: [String],
-    sets: [String]
+    comments: [{
+      type: Types.ObjectId,
+      ref: comments,
+    }],
+    sets: [{
+      type: Types.ObjectId,
+      ref: sets,
+    }]
   },
   { collection: "tunes" });
 export default tuneSchema;
