@@ -7,18 +7,9 @@ const userSchema = new mongoose.Schema({
       type: String,
       enum: ["ADMIN", "USER", "WARNED"],
       default: "USER",},
-    comments: {
-        type: Types.ObjectId,
-        ref: comments,
-    },
-    sets: {
-        type: Types.ObjectId,
-        ref: sets,
-    },
-    favoriteTunes: {
-        type: Types.ObjectId,
-        ref: tunes,
-    }
+    comments: String,
+    sets: [String],
+    favoriteTunes: [String]
   },
   { collection: "users" });
 export default userSchema;
