@@ -2,14 +2,10 @@ import * as dao from "./dao.js";
 
 export default function CommentRoutes(app) {
 
-    const findComment = async(req, res) => {
+    const findCommentsFor = async(req, res) => {
       const {id} = req.params;
-      const currentComment = await dao.findCommentById(id);
-      if (!currentComment) {
-        res.status(404).send("Tune not found");
-        return;
-      }
-      res.json(currentTune);
+      const comments = await dao.findAllCommentsFor(id);
+      res.json(comments);
     };
     const updateComment = async(req, res) => {
       const { id } = req.params;
@@ -32,7 +28,7 @@ export default function CommentRoutes(app) {
       res.json(comments);
     };
   
-    app.get("/api/comments/:id", findComment);
+    app.get("/api/comments/:id", findCommentsFor);
   
     app.put("/api/comments/:id", updateComment);
   

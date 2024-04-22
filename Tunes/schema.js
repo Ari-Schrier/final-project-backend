@@ -5,7 +5,9 @@ const tuneSchema = new mongoose.Schema({
     type: String,
     email: String,
     aliases: [String],
-    comments: [String],
+    comments: [{
+      ref:"comments", type:
+        mongoose.Schema.Types.ObjectId}],
     sets: [String]
   },
   { collection: "tunes" });
