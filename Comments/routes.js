@@ -5,6 +5,7 @@ export default function CommentRoutes(app) {
     const findCommentsFor = async(req, res) => {
       const {id} = req.params;
       const comments = await dao.findAllCommentsFor(id);
+      console.log(comments);
       res.json(comments);
     };
     const updateComment = async(req, res) => {
@@ -27,8 +28,15 @@ export default function CommentRoutes(app) {
       const comments = await dao.findAllComments();
       res.json(comments);
     };
+    const getCommentsBy = async(req, res) => {
+      const {name} = req.params;
+      const comments = await dao.findAllCommentsBy(name);
+      res.json(comments);
+    }
   
-    app.get("/api/comments/:id", findCommentsFor);
+    app.get("/api/comments/tune/:id", findCommentsFor);
+
+    app.get("/api/comments/user/:name", getCommentsBy)
   
     app.put("/api/comments/:id", updateComment);
   
@@ -36,6 +44,6 @@ export default function CommentRoutes(app) {
   
     app.post("/api/comments", createComment);
   
-    app.get("/api/comments", getComments);
+    app.get("/api/comments/all", getComments);
   }
   

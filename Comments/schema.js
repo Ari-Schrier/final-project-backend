@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 const commentSchema = new mongoose.Schema({
     author: String,
-    subject: String,
+    subjectNum: String,
+    subjectName: String,
     text: String,
   },
   { collection: "comments" });
