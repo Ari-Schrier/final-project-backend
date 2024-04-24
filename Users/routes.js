@@ -29,13 +29,13 @@ export default function UserRoutes(app) {
     };  
 
     const findUser = async(req, res) => {
-      const {id} = req.params;
-      const currentUser = await dao.findUserById(id);
+      const {name} = req.params;
+      const currentUser = await dao.findUserByUsername(name);
       if (!currentUser) {
-        res.status(404).send("Tune not found");
+        res.status(404).send("User not found");
         return;
       }
-      res.json(currentTune);
+      res.json(currentUser);
     };
 
     const updateUser = async (req, res) => {
@@ -50,17 +50,12 @@ export default function UserRoutes(app) {
       await dao.deleteUser(id);
       res.sendStatus(204);
     };
-    const createUser = async(req, res) => {
-      const user = req.body;
-      const newUser = await dao.createUser(user);
-      res.send(newUser);
-    };
     const getUsers = async(req, res) => {
       const users = await dao.findAllUsers();
       res.json(users);
     };
   
-    app.get("/api/users/:id", findUser);
+    app.get("/api/users/:name", findUser);
 
     app.post("/api/users/profile", profile);
 
