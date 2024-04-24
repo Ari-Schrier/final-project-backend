@@ -32,6 +32,7 @@ export default function SetRoutes(app) {
       res.json(sets);
     };
     const getSetsBy = async(req, res) => {
+      console.log("Here");
       const {name} = req.params;
       const sets = await dao.findAllSetsByAuthor(name);
       res.json(sets)

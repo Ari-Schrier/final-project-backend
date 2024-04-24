@@ -3,8 +3,7 @@ const setSchema = new mongoose.Schema({
     name: { type: String, required: true},
     user: String,
     tunes: [String],
-    description: String,
-    comments: [String]
+    description: String
   },
   { collection: "sets" });
 export default setSchema;
