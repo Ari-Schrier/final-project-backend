@@ -31,8 +31,22 @@ export default function SetRoutes(app) {
       const sets = await dao.findAllSets();
       res.json(sets);
     };
+    const getSetsBy = async(req, res) => {
+      const {name} = req.params;
+      const sets = await dao.findAllSetsByAuthor(name);
+      res.json(sets)
+    };
+    const getSetsContaining = async(req, res) => {
+      const {sessionId} = req.params;
+      const sets = await dao.findAllSetsContaining(sessionId);
+      res.json(sets)
+    };
   
-    app.get("/api/sets/:id", findSet);
+    app.get("/api/sets/all/:id", findSet);
+
+    app.get("/api/sets/author/:name", getSetsBy);
+
+    app.get("/api/sets/tune/:sessionId", getSetsContaining);
   
     app.put("/api/sets/:id", updateSet);
   

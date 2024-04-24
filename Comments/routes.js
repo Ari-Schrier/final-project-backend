@@ -5,7 +5,6 @@ export default function CommentRoutes(app) {
     const findCommentsFor = async(req, res) => {
       const {id} = req.params;
       const comments = await dao.findAllCommentsFor(id);
-      console.log(comments);
       res.json(comments);
     };
     const updateComment = async(req, res) => {
