@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const setSchema = new mongoose.Schema({
     name: { type: String, required: true},
-    user: String,
+    author: String,
     tunes: [String],
     description: String
   },
